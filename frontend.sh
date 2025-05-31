@@ -1,6 +1,6 @@
 
 
-script_location:$(pwd)
+script_location=$(pwd)
 
 
 dnf install nginx -y
