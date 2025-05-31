@@ -7,7 +7,7 @@ status_check (){
     echo sucuess
   else
      echo -e "\e[35m failure\e[0m"
-      echo "check log files,LOG -${LOG}
+      echo "check log files,LOG -${LOG}"
 
   fi
 }
