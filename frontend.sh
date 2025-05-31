@@ -11,7 +11,7 @@ status_check (){
 
   fi
 }
-echo -e "\e[35m installed nginx\e[0m"
+echo -e "\e[35minstalledinginx\e[0m"
 dnf install nginx -y &>>${LOG}
 
 
