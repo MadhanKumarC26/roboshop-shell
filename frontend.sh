@@ -2,67 +2,38 @@
 
 script_location=$(pwd)
 LOG=/tmp/roboshop.log
+status_check (){
+  if [ $? -eq 0 ]; then
+    echo sucuess
+  else
+     echo -e "\e[35m failure\e[0m"
+      echo "check log files,LOG -${LOG}
 
-
+  fi
+}
+echo -e "\e[35m installed nginx\e[0m"
 dnf install nginx -y &>>${LOG}
-if [ $? -eq 0 ]; then
-  echo sucuess
-else
-    echo failure
-fi
+
 
 systemctl enable nginx &>>${LOG}
-if [ $? -eq 0 ]; then
-  echo sucuess
-else
-    echo failure
-fi
+status_check
+
 systemctl start nginx &>>${LOG}
-if [ $? -eq 0 ]; then
-  echo sucuess
-else
-    echo failure
-fi
+status_check
 
 rm -rf /usr/share/nginx/html/* &>>${LOG}
-if [ $? -eq 0 ]; then
-  echo sucuess
-else
-    echo failure
-fi
+status_check
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip &>>${LOG}
-if [ $? -eq 0 ]; then
-  echo sucuess
-else
-    echo failure
-fi
-
+status_check
 cd /usr/share/nginx/html &>>${LOG}
-if [ $? -eq 0 ]; then
-  echo sucuess
-else
-    echo failure
-fi
-
+status_check
 unzip /tmp/frontend.zip &>>${LOG}
-if [ $? -eq 0 ]; then
-  echo sucuess
-else
-    echo failure
-fi
+status_check
 
 cp ${script_location}/files/nginx-roboshop.conf /etc/nginx/default.d/roboshop.conf &>>${LOG}
-if [ $? -eq 0 ]; then
-  echo sucuess
-else
-    echo failure
-fi
+status_check
 
 systemctl enable nginx &>>${LOG}
 
 systemctl restart nginx &>>${LOG}
-if [ $? -eq 0 ]; then
-  echo sucuess
-else
-    echo failure
-fi
+status_check
