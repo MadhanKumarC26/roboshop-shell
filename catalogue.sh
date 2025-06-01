@@ -1,4 +1,4 @@
-source = common,sh
+source = common.sh
 
 print_head "disabled older version of nodejs"
 dnf module disable nodejs -y  &>>${LOG}
