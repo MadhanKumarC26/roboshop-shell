@@ -32,7 +32,7 @@ print_head "Cleanup Old Content"
 
   print_head "Extracting App Content"
   cd /app
-  unzip /tmp/${component}.zip &>>${LOG}
+  unzip /tmp/catalogue.zip &>>${LOG}
   status_check
 
 
