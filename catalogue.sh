@@ -26,13 +26,15 @@ status_check
  print_head "content downloaded"
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>>${LOG}
  status_check
-cd /app &>>${LOG}
-status_check
+print_head "Cleanup Old Content"
+  rm -rf /app/* &>>${LOG}
+  status_check
 
-print_head "removed older content"
-rm -rf *  &>>${LOG}
-status_check
-unzip /tmp/catalogue.zip &>>${LOG}
+  print_head "Extracting App Content"
+  cd /app
+  unzip /tmp/${component}.zip &>>${LOG}
+  status_check
+
 
 print_head "installed new content"
 npm install &>>${LOG}
