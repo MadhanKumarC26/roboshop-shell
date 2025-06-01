@@ -13,7 +13,7 @@ dnf install nodejs -y  &>>${LOG}
 status_check
 
 print_head "added robosop user"
-id_roboshop
+id roboshop
 if {$? -nq 0},then
 useradd roboshop &>>${LOG}
 fi
