@@ -20,7 +20,7 @@ print_head "added robosop user"
   status_check
 
 print_head "app direcorectoy created"
-mkdir /app &>>${LOG}
+mkdir -p /app &>>${LOG}
 status_check
 
  print_head "content downloaded"
