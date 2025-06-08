@@ -1,8 +1,8 @@
 source common.sh
 
-print_head "Configuring NodeJS Repos"
-  curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${LOG}
-  status_check
+dnf module disable nodejs -y
+dnf module enable nodejs:18 -y
+
 
   print_head "Install NodeJS"
   yum install nodejs -y &>>${LOG}
