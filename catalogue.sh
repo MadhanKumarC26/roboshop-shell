@@ -1,16 +1,12 @@
 source common.sh
 
-print_head "disabled older version of nodejs"
-dnf module disable nodejs -y  &>>${LOG}
-status_check
+print_head "Configuring NodeJS Repos"
+  curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${LOG}
+  status_check
 
-print_head "enabled 18 version of nodejs"
-dnf module enable nodejs:18 -y  &>>${LOG}
-status_check
-
-print_head "installed required version nodejs"
-dnf install nodejs -y  &>>${LOG}
-status_check
+  print_head "Install NodeJS"
+  yum install nodejs -y &>>${LOG}
+  status_check
 
 print_head "added robosop user"
  id roboshop &>>${LOG}
@@ -41,19 +37,18 @@ npm install &>>${LOG}
 status_check
 
 
-cp ${script_location}/files/catalogue.service /etc/systemd/system/catalogue.service.conf &>>${LOG}
-status_check
-
-systemctl daemon-reload &>>${LOG}
-status_check
-
-print_head "Copy MongoDB Repo file"
 cp ${script_location}/files/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${LOG}
 status_check
 
-print_head "install MongoDB Repo file"
-dnf install mongodb-org-shell -y &>>${LOG}
-status_check
+print_head "Install Mongo Client"
+      yum install mongodb-org-shell -y &>>${LOG}
+      status_check
 
-mongo --host mongodb-dev.devops26.shop </app/schema/catalogue.js &>>${LOG}
+
+print_head "Load Schema"
+      mongo --host mongodb-dev.devops26.shop </app/schema/${component}.js &>>${LOG}
+      status_check
+
+
+systemctl daemon-reload &>>${LOG}
 status_check
