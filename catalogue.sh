@@ -36,7 +36,7 @@ npm install &>>${LOG}
 status_check
 
 print_head "Configuring  Service File"
-  cp ${script_location}/files/catalodue.service /etc/systemd/system/catalogue.service &>>${LOG}
+  cp ${script_location}/files/catalogue.service /etc/systemd/system/catalogue.service &>>${LOG}
   status_check
 
  print_head "Reload SystemD"
