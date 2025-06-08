@@ -55,5 +55,5 @@ print_head "install MongoDB Repo file"
 dnf install mongodb-org-shell -y &>>${LOG}
 status_check
 
-mongo --host dev.devops26.shop </app/schema/catalogue.js &>>${LOG}
+mongo --host mongodb-dev.devops26.shop </app/schema/catalogue.js &>>${LOG}
 status_check
