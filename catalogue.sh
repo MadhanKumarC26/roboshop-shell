@@ -5,7 +5,7 @@ dnf module enable nodejs:18 -y
 
 
   print_head "Install NodeJS"
- dnf install nodejs -y -y &>>${LOG}
+ dnf install nodejs -y &>>${LOG}
   status_check
 
 print_head "added robosop user"
