@@ -17,7 +17,7 @@ mkdir -p /app &>>${LOG}
 status_check
 
  print_head "content downloaded"
-curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip  &>>${LOG}
+curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip  &>>${LOG}
  status_check
 print_head "Cleanup Old Content"
   rm -rf /app/* &>>${LOG}
