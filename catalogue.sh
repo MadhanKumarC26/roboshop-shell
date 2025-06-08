@@ -3,7 +3,6 @@ source common.sh
 dnf module disable nodejs -y
 dnf module enable nodejs:18 -y
 
-
   print_head "Install NodeJS"
  dnf install nodejs -y &>>${LOG}
   status_check
