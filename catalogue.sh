@@ -45,7 +45,7 @@ print_head "Install Mongo Client"
 
 
 print_head "Load Schema"
-      mongo --host mongodb-dev.devops26.shop </app/schema/${component}.js &>>${LOG}
+      mongo --host mongodb-dev.devops26.shop </app/schema/catalogue.js &>>${LOG}
       status_check
 
 
