@@ -1,11 +1,10 @@
 source common.sh
 
-print_head "Configuring NodeJS Repos"
-  curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${LOG}
-  status_check
+dnf module disable nodejs -y
+dnf module enable nodejs:18 -y
 
   print_head "Install NodeJS"
-  yum install nodejs -y &>>${LOG}
+ dnf install nodejs -y &>>${LOG}
   status_check
 
 print_head "added robosop user"
@@ -36,6 +35,21 @@ print_head "installed new content"
 npm install &>>${LOG}
 status_check
 
+print_head "Configuring  Service File"
+  cp ${script_location}/files/catalogue.service /etc/systemd/system/catalogue.service &>>${LOG}
+  status_check
+
+ print_head "Reload SystemD"
+  systemctl daemon-reload &>>${LOG}
+  status_check
+
+ print_head "Enable  Service "
+  systemctl enable catalogue  &>>${LOG}
+  status_check
+
+  print_head "Start catalogue  service "
+  systemctl start catalogue  &>>${LOG}
+  status_check
 
 cp ${script_location}/files/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${LOG}
 status_check
@@ -46,7 +60,7 @@ print_head "Install Mongo Client"
 
 
 print_head "Load Schema"
-      mongo --host mongodb-dev.devops26.shop </app/schema/${component}.js &>>${LOG}
+      mongo --host mongodb-dev.devops26.shop </app/schema/catalogue.js &>>${LOG}
       status_check
 
 
