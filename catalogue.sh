@@ -35,6 +35,21 @@ print_head "installed new content"
 npm install &>>${LOG}
 status_check
 
+print_head "Configuring  Service File"
+  cp ${script_location}/files/catalodue.service /etc/systemd/system/catalogue.service &>>${LOG}
+  status_check
+
+ print_head "Reload SystemD"
+  systemctl daemon-reload &>>${LOG}
+  status_check
+
+ print_head "Enable  Service "
+  systemctl enable catalogue  &>>${LOG}
+  status_check
+
+  print_head "Start catalogue  service "
+  systemctl start catalogue  &>>${LOG}
+  status_check
 
 cp ${script_location}/files/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${LOG}
 status_check
