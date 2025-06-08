@@ -24,7 +24,7 @@ mkdir -p /app &>>${LOG}
 status_check
 
  print_head "content downloaded"
-curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user.zip  &>>${LOG}
+curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart.zip  &>>${LOG}
  status_check
 print_head "Cleanup Old Content"
   rm -rf /app/* &>>${LOG}
@@ -32,7 +32,7 @@ print_head "Cleanup Old Content"
 
   print_head "Extracting App Content"
   cd /app
-  unzip /tmp/user.zip &>>${LOG}
+  unzip /tmp/cart.zip &>>${LOG}
   status_check
 
   print_head "Installing NodeJS Dependencies"
@@ -40,10 +40,10 @@ print_head "Cleanup Old Content"
     npm install &>>${LOG}
     status_check
 
-    cp ${script_location}/files/user.service /etc/systemd/system/user.service &>>${LOG}
+    cp ${script_location}/files/cart.service /etc/systemd/system/cart.service &>>${LOG}
     status_check
 
     systemctl daemon-reload
 
-    systemctl enable user
-    systemctl start user
+    systemctl enable cart
+    systemctl start cart
